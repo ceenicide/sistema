@@ -31,18 +31,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Login Administrativo</title>
     <style>
-        body { font-family: sans-serif; background: #2c3e50; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .login-box { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); width: 300px; }
-        h2 { text-align: center; color: #333; }
-        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; background: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
-        button:hover { background: #219150; }
-        .erro { color: red; font-size: 14px; text-align: center; }
-    </style>
+    body { background: #f1f5f9; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+    .login-card { background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); width: 100%; max-width: 360px; }
+    h2 { margin-top: 0; font-size: 1.25rem; color: #0f172a; text-align: center; }
+    input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box; }
+    button { width: 100%; background: #0f172a; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 10px; }
+    .error-msg { background: #fee2e2; color: #b91c1c; padding: 10px; border-radius: 6px; font-size: 0.8rem; margin-bottom: 1rem; text-align: center; }
+</style>
 </head>
 <body>
     <div class="login-box">
-        <h2>Painel ADM</h2>
+        <h2>logar administrador</h2>
         <?php if (isset($erro)): ?> <p class="erro"><?= $erro ?></p> <?php endif; ?>
         <form method="POST">
             <input type="text" name="usuario" placeholder="Usuário" required>
