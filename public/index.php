@@ -2,59 +2,52 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Avalie sua Experiência</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avalie nossa Experiência</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: sans-serif; max-width: 500px; margin: 40px auto; padding: 20px; line-height: 1.6; }
-        .bloco { margin-bottom: 20px; padding: 15px; border-bottom: 1px solid #eee; }
-        label { font-weight: bold; display: block; margin-bottom: 5px; }
-        select { width: 100%; padding: 8px; border-radius: 4px; }
-        textarea { width: 100%; height: 80px; margin-top: 10px; }
-        button { background: #28a745; color: white; border: none; padding: 12px 20px; width: 100%; cursor: pointer; font-size: 16px; border-radius: 5px; }
+        :root { --primary: #6366f1; --bg: #f8fafc; --text: #1e293b; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 20px; }
+        .card { background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 100%; max-width: 450px; }
+        h1 { font-size: 1.5rem; text-align: center; margin-bottom: 2rem; }
+        .rating-group { margin-bottom: 1.5rem; }
+        label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; }
+        .stars { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 5px; }
+        .stars { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 5px; }
+        .stars input { display: none; }
+        .stars label { font-size: 1.5rem; color: #cbd5e1; cursor: pointer; transition: color 0.2s; }
+        .stars input:checked ~ label, .stars label:hover, .stars label:hover ~ label { color: #f59e0b; }
+        textarea { width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; font-family: inherit; resize: none; box-sizing: border-box; }
+        button { width: 100%; background: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 1rem; transition: opacity 0.2s; }
+        button:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
-    <form action="salvar.php" method="POST">
-        <h2>Sua opinião é importante!</h2>
-        
-        <div class="bloco">
-            <label>Qualidade da Comida:</label>
-            <select name="nota_comida" required>
-                <option value="5">⭐⭐⭐⭐⭐ (Excelente)</option>
-                <option value="4">⭐⭐⭐⭐ (Boa)</option>
-                <option value="3">⭐⭐⭐ (Regular)</option>
-                <option value="2">⭐⭐ (Ruim)</option>
-                <option value="1">⭐ (Péssima)</option>
-            </select>
-        </div>
-
-        <div class="bloco">
-            <label>Atendimento:</label>
-            <select name="nota_atendimento" required>
-                <option value="5">⭐⭐⭐⭐⭐ (Excelente)</option>
-                <option value="4">⭐⭐⭐⭐ (Bom)</option>
-                <option value="3">⭐⭐⭐ (Regular)</option>
-                <option value="2">⭐⭐ (Ruim)</option>
-                <option value="1">⭐ (Péssimo)</option>
-            </select>
-        </div>
-
-        <div class="bloco">
-            <label>Nota Geral da Experiência:</label>
-            <select name="nota_geral" required>
-                <option value="5">⭐⭐⭐⭐⭐ (Incrível)</option>
-                <option value="4">⭐⭐⭐⭐ (Muito Bom)</option>
-                <option value="3">⭐⭐⭐ (Satisfeito)</option>
-                <option value="2">⭐⭐ (Poderia ser melhor)</option>
-                <option value="1">⭐ (Não volto)</option>
-            </select>
-        </div>
-
-        <div class="bloco">
-            <label>Algum comentário?</label>
-            <textarea name="comentario" placeholder="Conte-nos mais sobre sua visita..."></textarea>
-        </div>
-
-        <button type="submit">Enviar Avaliação</button>
-    </form>
+    <div class="card">
+        <h1>Como voce avalia nossos Servicos ?</h1>
+        <form action="salvar.php" method="POST">
+            <?php
+            $campos = [
+                'nota_comida' => 'A comida estava boa?',
+                'nota_atendimento' => 'O atendimento foi satisfatório?',
+                'nota_geral' => 'Sua nota geral para nós'
+            ];
+            foreach ($campos as $name => $label): ?>
+                <div class="rating-group">
+                    <label><?php echo $label; ?></label>
+                    <div class="stars">
+                        <?php for($i=5; $i>=1; $i--): ?>
+                            <input type="radio" id="<?php echo $name.$i; ?>" name="<?php echo $name; ?>" value="<?php echo $i; ?>" required>
+                            <label for="<?php echo $name.$i; ?>">★</label>
+                        <?php endfor; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            
+            <label>Comentários (Opcional) </label>
+            <textarea name="comentario" rows="3" placeholder="Opcional..."></textarea>
+            <button type="submit">Enviar Avaliação</button>
+        </form>
+    </div>
 </body>
 </html>

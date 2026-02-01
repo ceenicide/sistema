@@ -51,7 +51,7 @@ $stats = $pdo->query("SELECT
 <body>
 
 <nav>
-    <div class="logo">🍽️ Restaurante Admin</div>
+    <div class="logo">Painel administrativo </div>
     <a href="logout.php" class="logout">Sair do Painel</a>
 </nav>
 
