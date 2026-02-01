@@ -1,6 +1,10 @@
 <?php
 session_start();
-require_once dirname(dirname(__DIR__)) . '/config/database.php';
+
+
+require_once dirname(__DIR__) . '/config/database.php';
+require_once dirname(__DIR__) . '/src/Avaliacao.php';
+require_once dirname(__DIR__) . '/src/Usuario.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario = $_POST['usuario'];

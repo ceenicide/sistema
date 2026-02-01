@@ -3,9 +3,9 @@ session_start();
 // Proteção: Só deleta se estiver logado
 if (!isset($_SESSION['usuario_id'])) { exit('Acesso negado'); }
 
-require_once dirname(dirname(__DIR__)) . '/config/database.php';
-require_once dirname(dirname(__DIR__)) . '/src/Avaliacao.php';
-
+require_once dirname(__DIR__) . '/config/database.php';
+require_once dirname(__DIR__) . '/src/Avaliacao.php';
+require_once dirname(__DIR__) . '/src/Usuario.php';
 $id = $_GET['id'] ?? null;
 
 if ($id) {
